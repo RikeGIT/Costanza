@@ -1,4 +1,4 @@
-# Costanza
+# Costanza 💫📘
 
 <p align="center">
   Organize sua jornada de estudo e conquiste seus objetivos.
