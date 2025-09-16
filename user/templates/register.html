@@ -1,0 +1,40 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+{% block title %}Registrar{% endblock %}
+{% block content %}
+<div class="pixel-message-container">
+    <img src="{% static 'images/pixelstar.gif' %}" alt="Computador em pixel art" class="pixel-computer">
+    <div class="speech-bubble">
+        <p>Crie sua conta e salve o seu progresso!</p>
+    </div>
+</div>
+<form method="post" class="login-form">
+    {% csrf_token %}
+    <div id="social-login">
+        <button type="submit" id="google-btn" class="btn-with-icon">
+            <span class="btn-content">
+                <img src="{% static 'images/google-icon.svg' %}" alt="Google Icon"> Google
+            </span>
+        </button>
+        <button type="submit" id="github-btn" class="btn-with-icon">
+            <span class="btn-content">
+                <img src="{% static 'images/github-icon.svg' %}" alt="Github Icon"> Github
+            </span>
+        </button>
+    </div>
+    <div class="divider"><span>ou</span></div>
+    <div id="form-fields">
+        <div class="form-group">
+            <input type="email" name="email" required placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" required placeholder="Senha">
+        </div>
+    </div>
+    <button id="enter-button" type="submit">Registrar</button>
+    <div id="redirect-group">
+        <label for="">Já tem conta?</label>
+        <a href="/user/login/">Faça login</a>
+    </div>
+</form>
+{% endblock %}
