@@ -2,15 +2,21 @@
 {% load static %}
 {% block title %}Registrar{% endblock %}
 {% block content %}
+<div class="pixel-message-container">
+    <img src="{% static 'images/pixelstar.gif' %}" alt="Computador em pixel art" class="pixel-computer">
+    <div class="speech-bubble">
+        <p>Crie sua conta e salve o seu progresso!</p>
+    </div>
+</div>
 <form method="post" class="login-form">
     {% csrf_token %}
     <div id="social-login">
-        <button type="submit">
+        <button type="submit" id="google-btn" class="btn-with-icon">
             <span class="btn-content">
                 <img src="{% static 'images/google-icon.svg' %}" alt="Google Icon"> Google
             </span>
         </button>
-        <button type="submit">
+        <button type="submit" id="github-btn" class="btn-with-icon">
             <span class="btn-content">
                 <img src="{% static 'images/github-icon.svg' %}" alt="Github Icon"> Github
             </span>

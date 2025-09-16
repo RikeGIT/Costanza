@@ -6,9 +6,8 @@
     <title>{% block title %}Autenticação{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{% static 'images/costanza.png' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
     {% if success %}
@@ -17,5 +16,6 @@
         <div class="alert alert-error">{{ error }}</div>
     {% endif %}
     {% block content %}{% endblock %}
+    <script src="{% static 'js/typewriter.js' %}"></script>
 </body>
 </html>

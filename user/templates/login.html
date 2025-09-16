@@ -2,15 +2,34 @@
 {% load static %}
 {% block title %}Login{% endblock %}
 {% block content %}
+<div class="pixel-message-container">
+    <img src="{% static 'images/pixelstar.gif' %}" alt="Computador em pixel art" class="pixel-computer">
+    <div class="speech-bubble">
+        <p>Entre na sua conta e se mantenha estudando.</p>
+    </div>
+</div>
 <form method="post" class="login-form">
     {% csrf_token %}
+    {% comment %} CONFIGURAÇÃO PARA LOGIN COM GOOGLE E GITHUB (FALTA IMPLEMENTAR AS TELAS) {% endcomment %}
+    {% comment %} <div id="social-login">
+        <a href="{% url 'google_login' %}" id="google-btn" class="btn-with-icon">
+            <span class="btn-content">
+                <img src="{% static 'images/google-icon.svg' %}" alt="Google Icon"> Google
+            </span>
+        </a>
+        <button type="submit" id="github-btn" class="btn-with-icon">
+            <span class="btn-content">
+                <img src="{% static 'images/github-icon.svg' %}" alt="Github Icon"> Github
+            </span>
+        </button>
+        </div> {% endcomment %}
     <div id="social-login">
-        <button type="submit">
+        <button type="submit" id="google-btn" class="btn-with-icon">
             <span class="btn-content">
                 <img src="{% static 'images/google-icon.svg' %}" alt="Google Icon"> Google
             </span>
         </button>
-        <button type="submit">
+        <button type="submit" id="github-btn" class="btn-with-icon">
             <span class="btn-content">
                 <img src="{% static 'images/github-icon.svg' %}" alt="Github Icon"> Github
             </span>
