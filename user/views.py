@@ -1,49 +1,24 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
+from user.api.v1.serializers import UserSerializer, LoginSerializer
 
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import get_user_model
-from django.shortcuts import render
-import json
+class RegisterView(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key, 'user_id': user.id, 'email': user.email}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-User = get_user_model()
-
-
-@csrf_exempt
-def register(request):
-
-	
-	if request.method == 'POST':
-		if request.content_type == 'application/json':
-			data = json.loads(request.body)
-			email = data.get('email')
-			password = data.get('password')
-		else:
-			email = request.POST.get('email')
-			password = request.POST.get('password')
-		if not email or not password:
-			return render(request, 'register.html', {'error': 'Email e senha são obrigatórios.'})
-		if User.objects.filter(email=email).exists():
-			return render(request, 'register.html', {'error': 'Email já cadastrado.'})
-		user = User.objects.create_user(email=email, password=password)
-		return render(request, 'register.html', {'success': 'Usuário registrado com sucesso.'})
-	return render(request, 'register.html')
-
-
-@csrf_exempt
-def user_login(request):
-	if request.method == 'POST':
-		if request.content_type == 'application/json':
-			data = json.loads(request.body)
-			email = data.get('email')
-			password = data.get('password')
-		else:
-			email = request.POST.get('email')
-			password = request.POST.get('password')
-		user = authenticate(request, email=email, password=password)
-		if user is not None:
-			login(request, user)
-			return render(request, 'login.html', {'success': 'Login realizado com sucesso.'})
-		else:
-			return render(request, 'login.html', {'error': 'Credenciais inválidas.'})
-	return render(request, 'login.html')
+class LoginView(APIView):
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key, 'user_id': user.id, 'email': user.email}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
