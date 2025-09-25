@@ -10,30 +10,17 @@
 </div>
 <form method="post" class="login-form">
     {% csrf_token %}
-    {% comment %} CONFIGURAÇÃO PARA LOGIN COM GOOGLE E GITHUB (FALTA IMPLEMENTAR AS TELAS) {% endcomment %}
-    {% comment %} <div id="social-login">
-        <a href="{% url 'google_login' %}" id="google-btn" class="btn-with-icon">
+    <div id="social-login">
+        <a href="#" id="google-btn" class="btn-with-icon"> {# Substitua '#' pela URL correta, ex: {% url 'social:begin' 'google-oauth2' %} #}
             <span class="btn-content">
                 <img src="{% static 'images/google-icon.svg' %}" alt="Google Icon"> Google
             </span>
         </a>
-        <button type="submit" id="github-btn" class="btn-with-icon">
+        <a href="#" id="github-btn" class="btn-with-icon"> {# Substitua '#' pela URL correta, ex: {% url 'social:begin' 'github' %} #}
             <span class="btn-content">
                 <img src="{% static 'images/github-icon.svg' %}" alt="Github Icon"> Github
             </span>
-        </button>
-        </div> {% endcomment %}
-    <div id="social-login">
-        <button type="submit" id="google-btn" class="btn-with-icon">
-            <span class="btn-content">
-                <img src="{% static 'images/google-icon.svg' %}" alt="Google Icon"> Google
-            </span>
-        </button>
-        <button type="submit" id="github-btn" class="btn-with-icon">
-            <span class="btn-content">
-                <img src="{% static 'images/github-icon.svg' %}" alt="Github Icon"> Github
-            </span>
-        </button>
+        </a>
     </div>
     <div class="divider"><span>ou</span></div>
     <div id="form-fields">
@@ -47,7 +34,7 @@
     <button id="enter-button" type="submit">Entrar</button>
     <div id="redirect-group">
         <label for="">Não tem conta?</label>
-        <a href="/user/register/">Registre-se</a>
+        <a href="{% url 'register' %}">Registre-se</a> {# Use o nome da sua URL de registro #}
     </div>
 </form>
 {% endblock %}

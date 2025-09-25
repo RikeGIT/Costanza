@@ -11,16 +11,16 @@
 <form method="post" class="login-form">
     {% csrf_token %}
     <div id="social-login">
-        <button type="submit" id="google-btn" class="btn-with-icon">
+        <a href="#" id="google-btn" class="btn-with-icon"> {# Substitua '#' pela URL correta, ex: {% url 'social:begin' 'google-oauth2' %} #}
             <span class="btn-content">
                 <img src="{% static 'images/google-icon.svg' %}" alt="Google Icon"> Google
             </span>
-        </button>
-        <button type="submit" id="github-btn" class="btn-with-icon">
+        </a>
+        <a href="#" id="github-btn" class="btn-with-icon"> {# Substitua '#' pela URL correta, ex: {% url 'social:begin' 'github' %} #}
             <span class="btn-content">
                 <img src="{% static 'images/github-icon.svg' %}" alt="Github Icon"> Github
             </span>
-        </button>
+        </a>
     </div>
     <div class="divider"><span>ou</span></div>
     <div id="form-fields">
@@ -34,7 +34,7 @@
     <button id="enter-button" type="submit">Registrar</button>
     <div id="redirect-group">
         <label for="">Já tem conta?</label>
-        <a href="/user/login/">Faça login</a>
+        <a href="{% url 'login' %}">Faça login</a> {# Use o nome da sua URL de login #}
     </div>
 </form>
 {% endblock %}
