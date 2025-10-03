@@ -23,6 +23,7 @@ urlpatterns = [
     
     # URLs do seu app user
     path('api/v1/users/', include('user.api.v1.router')),
+    path('api/v1/', include('friends.api.v1.router')),
     
     # URLs da documentação API
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

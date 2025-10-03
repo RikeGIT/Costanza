@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'drf_spectacular_sidecar',
     'django.contrib.sites',
     'user',
+    'friends',
     
 ]
 
